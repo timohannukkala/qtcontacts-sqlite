@@ -896,7 +896,7 @@ static QString buildWhere(const QContactDetailFilter &filter, QVariantList *bind
                 comparison += QLatin1String(" GLOB ?");
                 bindings->append(bindValue);
             } else {
-                if (phoneNumberMatch && !useNormalizedNumber) {
+                if (phoneNumberMatch && (!useNormalizedNumber || bindValue == "*")) {
                     bindValue = QLatin1String("*") + bindValue;
                     comparison += QLatin1String(" GLOB ?");
                     bindings->append(bindValue);
